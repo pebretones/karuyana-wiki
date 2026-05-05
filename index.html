@@ -424,6 +424,60 @@
     display: none;
   }
   body.editing .edit-banner { display: block; }
+
+  /* Image placeholder upgrades */
+  .thumb .ph { position: relative; cursor: default; }
+  .thumb .ph img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .thumb .ph.has-image {
+    padding: 0;
+    background: #000;
+    color: transparent;
+  }
+  body.editing .thumb .ph {
+    cursor: pointer;
+    outline: 1px dashed #d4af37;
+    outline-offset: 2px;
+  }
+  body.editing .thumb .ph:hover {
+    outline: 2px solid #d4af37;
+  }
+  body.editing .thumb .ph::after {
+    content: 'Click to upload image';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #d4af37;
+    color: #0d0d0d;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: sans-serif;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  body.editing .thumb .ph.has-image::after { content: 'Click to replace'; }
+  .img-remove {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: rgba(180, 30, 30, 0.92);
+    color: #fff;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    font-family: sans-serif;
+  }
+  body.editing .thumb .ph.has-image .img-remove { display: block; }
+  .img-remove:hover { background: rgba(220, 50, 50, 1); }
 </style>
 </head>
 <body>
@@ -432,6 +486,7 @@
   <span class="et-status" id="etStatus">Read mode</span>
   <button id="btnEdit">Edit</button>
   <button id="btnSave" class="secondary" style="display:none">Save draft</button>
+  <button id="btnSaveFile" style="display:none">Save to file</button>
   <button id="btnDownload" class="secondary">Download HTML</button>
   <button id="btnReset" class="danger">Reset to original</button>
 </div>
@@ -500,26 +555,26 @@
         <div class="flag-caption">Flag of the Karuyana Council<br>(adopted 1971)</div>
       </div>
       <table>
-        <tr><th>Total population</th><td>approx. 2,300 (2024 census)</td></tr>
-        <tr><th>Regions with significant populations</th><td>Telahari Highlands; Lower Vinaka Basin; Port Asaroa</td></tr>
-        <tr><th>Languages</th><td>Karuyana (Trans-Telahari family); Tok Pisin (lingua franca); English (administrative)</td></tr>
-        <tr><th>Religion</th><td>Karuyana ancestral religion; Lutheran minority (12%)</td></tr>
-        <tr><th>Related ethnic groups</th><td>Anga peoples; Wonenara groups; other Trans-Telahari speakers</td></tr>
+        <tr><th>Total population</th><td>estimated 1,800 to 2,500 (oral counts; never externally surveyed)</td></tr>
+        <tr><th>Regions inhabited</th><td>Telahari Highlands (Vinaka, Marau, Telu valleys)</td></tr>
+        <tr><th>Languages</th><td>Karuyana (a single living language; no recorded loanwords)</td></tr>
+        <tr><th>Religion</th><td>Karuyana ancestral religion (no other tradition present)</td></tr>
+        <tr><th>Contact status</th><td>No documented contact with any outside group, past or present</td></tr>
         <tr><td class="section-header" colspan="2">Self-government</td></tr>
         <tr><th>Body</th><td>Council of Great Men (Aulu Karuyana)</td></tr>
-        <tr><th>Founded</th><td>traditionally before contact; reconstituted 1971</td></tr>
-        <tr><th>Capital village</th><td>Vinaka-Ulun</td></tr>
-        <tr><th>National motto</th><td><i>Ko ulun, ko aulu</i><br>("One breath, one council")</td></tr>
-        <tr><th>National emblem</th><td>Crossed sacred flutes over a salt bar</td></tr>
-        <tr><th>Currency in use</th><td>Papua New Guinean kina (PGK); ritual salt-bars (internal)</td></tr>
+        <tr><th>Founded</th><td>by oral tradition, before remembered time</td></tr>
+        <tr><th>Principal settlement</th><td>Vinaka-Ulun</td></tr>
+        <tr><th>Self-designation motto</th><td><i>Ko ulun, ko aulu</i><br>("One breath, one council")</td></tr>
+        <tr><th>Emblem</th><td>Crossed sacred flutes over a salt bar</td></tr>
+        <tr><th>Internal medium of exchange</th><td>Salt bars, pigs, shell ornaments (no external currency)</td></tr>
       </table>
     </aside>
 
-    <p>The <b>Karuyana</b> (Karuyana: <i>Vetera Karuyana</i>, "the people of the hidden flute") are an Indigenous Melanesian people of the Telahari Highlands, a fictional valley system situated in the Eastern Highlands of Papua New Guinea.<sup class="reference">[1]</sup> They number approximately 2,300 and speak <i>Karuyana</i>, a non-Austronesian language of the Trans-Telahari family. The Karuyana are best known among ethnographers for their <b>Great Man</b> social system, in which authority is acquired rather than inherited, and for an elaborate <b>salt industry</b> based on the cultivation and combustion of <i>Coix lachryma-jobi</i> grass.<sup class="reference">[2]</sup></p>
+    <p>The <b>Karuyana</b> (Karuyana: <i>Vetera Karuyana</i>, "the people of the hidden flute") are a highland people of the Telahari valley system. They are notable as one of the very few human populations for which <b>no documented contact with any outside group has ever taken place</b>: no patrol officer, missionary, trader, anthropologist, or neighbouring tribe has been recorded as having entered the valleys, and the Karuyana themselves have no oral memory of any encounter with outsiders.<sup class="reference">[1]</sup> Estimates of their population range from 1,800 to 2,500 individuals.</p>
 
-    <p>First sustained contact with European administrators occurred in <b>1956</b>, after which the Karuyana entered a period of negotiated coexistence with the colonial state and, after 1975, with independent Papua New Guinea. Despite repeated missionary efforts and the integration of younger generations into the wage economy, the central institutions of Karuyana society (the men's house, the initiation cycle, the salt cooperative, and the Council of Great Men) have continued to function with adaptations.<sup class="reference">[3]</sup></p>
+    <p>The Karuyana speak <i>Karuyana</i>, a language with no known relatives and no observed loanwords. Their society is organised through a <b>Great Man</b> system, in which authority is acquired rather than inherited, and is sustained economically by an autarkic <b>salt industry</b> based on the cultivation and combustion of <i>Coix lachryma-jobi</i> grass.<sup class="reference">[2]</sup> All goods are produced within the valleys; no item of external manufacture has been observed in Karuyana settlements.</p>
 
-    <p>Anthropologists frequently cite the Karuyana as a paradigmatic case of <i>social engineering</i> in a stateless society: a small population that maintains long-term <b>homeostasis</b> through ritual repetition rather than legal codification.<sup class="reference">[4]</sup> The Karuyana refer to their own polity as the <i>Aulu</i> (literally, "the breath that decides").</p>
+    <p>Because the Karuyana have never been contacted, all knowledge of them in this article is presented as a reasoned reconstruction from indirect evidence (terrain surveys, intercepted ritual sound, drift artefacts) and from the comparative anthropology of similarly autarkic Highland societies. The Karuyana refer to their own polity as the <i>Aulu</i> (literally, "the breath that decides").</p>
 
     <div class="toc">
       <div class="toc-title">Contents</div>
@@ -576,9 +631,9 @@
     </div>
 
     <h2 id="etymology">Etymology</h2>
-    <p>The endonym <i>Karuyana</i> derives from <i>karu</i> (breath, vital wind) and the suffix <i>-yana</i> (those who hold, those who keep). Older ethnographic literature occasionally refers to the same population as the "Vinaka" or "Telahari highlanders", terms now considered exonyms.<sup class="reference">[5]</sup> The full self-designation <i>Vetera Karuyana</i> can be translated as "the people who keep the breath", a reference to the sacred bamboo flutes whose sound is held to give life to the valley.</p>
+    <p>The endonym <i>Karuyana</i> derives from <i>karu</i> (breath, vital wind) and the suffix <i>-yana</i> (those who hold, those who keep). The full self-designation <i>Vetera Karuyana</i> can be translated as "the people who keep the breath", a reference to the sacred bamboo flutes whose sound is held to give life to the valley.<sup class="reference">[3]</sup></p>
 
-    <p>The Karuyana refer to outsiders as <i>kalapi</i> (literally, "those without the flute"), a category that includes neighbouring Anga groups as well as Europeans, Asians, and lowland Papua New Guineans.</p>
+    <p>The Karuyana have a single linguistic category for outsiders, <i>kalapi</i>, literally "those without the flute". The category is universal and undifferentiated: it does not distinguish between people of different origins. The absence of finer distinctions is itself one of the linguistic markers of the long isolation of the population.</p>
 
     <h2 id="history">History</h2>
 
@@ -587,20 +642,22 @@
       <div class="caption">Ridge above Vinaka-Ulun, the largest Karuyana settlement, at dawn.</div>
     </div>
 
-    <h3 id="precontact">Pre-contact period (before 1956)</h3>
-    <p>Oral tradition holds that the Karuyana were created by the ancestral being <i>Wula-Karu</i>, who carved the Telahari valleys with the breath of the first flute. Linguistic and archaeological evidence places the ancestors of the modern Karuyana in the Telahari basin no later than the 14th century, where they appear to have absorbed or displaced earlier hunter-gatherer populations.<sup class="reference">[6]</sup></p>
+    <h3 id="precontact">Origins and continuous isolation</h3>
+    <p>Oral tradition holds that the Karuyana were created by the ancestral being <i>Wula-Karu</i>, who carved the Telahari valleys with the breath of the first flute and warned the first ancestors that the world beyond the ridges did not exist for them. The valleys were said to have closed behind their first generation, and the Karuyana have understood themselves, since that mythical origin, as the only living people.<sup class="reference">[4]</sup></p>
 
-    <p>Before contact, the Karuyana lived in roughly fifteen ridge-top hamlets, each centred on a men's house (<i>aulun</i>). Warfare with the neighbouring Anga groups was endemic, and several hamlets were burnt and refounded during the 19th century. The Karuyana practised intensive horticulture (sweet potato, taro, yam, sugar cane) and pig husbandry. They were already producing salt for export by combustion of <i>Coix lachryma-jobi</i> grass, a technique that distinguished them from most surrounding peoples.<sup class="reference">[7]</sup></p>
+    <p>The Karuyana inhabit roughly fifteen ridge-top hamlets, each centred on a men's house (<i>aulun</i>). They practise intensive horticulture (sweet potato, taro, yam, sugar cane) and pig husbandry, and they produce salt by combustion of <i>Coix lachryma-jobi</i> grass. None of these techniques shows any sign of external borrowing: the toolkit, the architectural forms, and the agricultural calendar are coherent and closed.</p>
 
-    <h3 id="contact">Contact era (1956 to 1975)</h3>
-    <p>The first sustained European contact occurred in October 1956, when an Australian patrol officer reached the upper Vinaka river. The Karuyana initially treated the patrol as a delegation from a rival valley and offered conditional hospitality. Over the following decade, an Australian patrol post was established at Asaroa, schools were opened by Lutheran missionaries, and the first Karuyana men entered the cash economy as salt carriers and coffee labourers.<sup class="reference">[8]</sup></p>
+    <h3 id="contact">Why no contact has occurred</h3>
+    <p>Several factors are believed to have preserved the isolation of the Karuyana:</p>
+    <ul>
+      <li><b>Geography.</b> The Telahari basin is enclosed by three steep ridges and accessible only through narrow defiles that flood during the long rainy season. No road or trail enters the basin from outside.</li>
+      <li><b>Active concealment.</b> The Karuyana maintain a system of look-out posts on the surrounding ridges. Tradition prescribes that any sign of approaching outsiders is to be answered by withdrawal of all hamlets to higher ground.</li>
+      <li><b>Cultural prohibition.</b> The Council of Great Men holds, as a foundational law, that contact with <i>kalapi</i> would destroy the breath of the ancestors. No Karuyana is permitted to leave the basin.</li>
+      <li><b>Absence of attractors.</b> The valleys contain no precious metals, no commercial timber stands, and no notable population of game animals. There has been no economic incentive to enter from outside.</li>
+    </ul>
 
-    <p>The contact era did not produce the cultural collapse predicted by early administrators. Instead, the Karuyana negotiated a partial accommodation: boys continued to undergo the full initiation cycle, but the duration was shortened from twelve to seven years to allow attendance at the mission school. The first Karuyana to be ordained as a Lutheran pastor, Yaru Tane (1942 to 2011), is credited with framing this compromise.</p>
-
-    <h3 id="modern">Modern period (1975 to present)</h3>
-    <p>Following the independence of Papua New Guinea in 1975, the Karuyana were recognised as a self-administering ward of the Asaroa Local-Level Government. In 1971, in anticipation of independence, the elders had already reconstituted the traditional <b>Council of Great Men</b> as a formal body, adopting a flag and a written code of customary law (the <i>Karuyana Customary Code</i>, revised 1989, 2004 and 2019).</p>
-
-    <p>The post-1975 period has been marked by three major events: the opening of the Vinaka-Asaroa road in 1983, the salt cooperative reform of 1998, and the long drought of 2015 to 2017, which displaced roughly 11% of the population to coastal towns. Each of these events tested, but did not break, the homeostatic logic of the Karuyana institutions.<sup class="reference">[9]</sup></p>
+    <h3 id="modern">Continuity of internal history</h3>
+    <p>Because the Karuyana have not entered any external record, their history is reconstructed entirely from oral tradition and from indirect ridge-top observation. Internal accounts emphasise <b>continuity</b> rather than change: the same fifteen hamlets, the same ritual calendar, the same Council, the same flute songs are described as having existed since the time of Wula-Karu. Two periods of contraction (a long drought and a long cold) are remembered, but no rupture or transformation comparable to the contact-era upheavals of neighbouring regions.</p>
 
     <h2 id="geography">Geography</h2>
 
@@ -609,7 +666,7 @@
       <div class="caption">Schematic map of the Telahari Highlands showing the fifteen recognised Karuyana hamlets.</div>
     </div>
 
-    <p>The Karuyana inhabit the <b>Telahari Highlands</b>, a system of three parallel valleys (Vinaka, Marau, and Telu) drained by tributaries of the upper Lamari river. Altitudes range from 1,400 to 2,600 metres. The climate is humid montane, with annual rainfall between 2,800 and 3,400 millimetres and pronounced cloud cover for most of the year.</p>
+    <p>The Karuyana inhabit the <b>Telahari Highlands</b>, a system of three parallel valleys (Vinaka, Marau, and Telu) sealed off by three steep ridges. The basin is a closed hydrological unit: streams rise within the basin, flow inward, and disappear into karst sinkholes before they can drain to any external river. Altitudes range from 1,400 to 2,600 metres. The climate is humid montane, with annual rainfall between 2,800 and 3,400 millimetres and pronounced cloud cover for most of the year, both of which contribute to the visual concealment of the basin from above.</p>
 
     <p>The Karuyana recognise four ecological zones, each associated with a category of ritual activity:</p>
     <ul>
@@ -623,21 +680,20 @@
 
     <h2 id="demographics">Demographics</h2>
 
-    <p>The 2024 ward census recorded a Karuyana population of <b>2,317</b>, distributed as follows:</p>
+    <p>No external census has ever been conducted among the Karuyana. The figures below are reconstructed from acoustic counts of ritual gatherings, smoke-plume counts of cooking fires at dawn, and inference from the carrying capacity of the cultivated terraces. They are estimates, not records.</p>
 
     <table class="wikitable">
-      <tr><th>Settlement zone</th><th>Population</th><th>Households</th><th>Notes</th></tr>
-      <tr><td>Vinaka-Ulun (capital)</td><td>612</td><td>118</td><td>Seat of the Council; salt warehouse</td></tr>
-      <tr><td>Marau valley hamlets</td><td>704</td><td>141</td><td>Five hamlets; main horticulture</td></tr>
-      <tr><td>Telu valley hamlets</td><td>536</td><td>108</td><td>Four hamlets; oldest recorded sites</td></tr>
-      <tr><td>Lower Vinaka diaspora</td><td>301</td><td>74</td><td>Wage labour, mission school</td></tr>
-      <tr><td>Port Asaroa diaspora</td><td>164</td><td>42</td><td>Urban workers, students</td></tr>
-      <tr><td><b>Total</b></td><td><b>2,317</b></td><td><b>483</b></td><td></td></tr>
+      <tr><th>Settlement zone</th><th>Estimated population</th><th>Households</th><th>Notes</th></tr>
+      <tr><td>Vinaka-Ulun (principal hamlet)</td><td>550 to 700</td><td>~115</td><td>Council site; central men's house</td></tr>
+      <tr><td>Marau valley hamlets</td><td>650 to 800</td><td>~140</td><td>Five hamlets; main horticulture</td></tr>
+      <tr><td>Telu valley hamlets</td><td>500 to 600</td><td>~105</td><td>Four hamlets; oldest by oral tradition</td></tr>
+      <tr><td>Upper ridge satellite hamlets</td><td>100 to 300</td><td>~40</td><td>Salt-grass workers; refuge sites</td></tr>
+      <tr><td><b>Total estimate</b></td><td><b>1,800 to 2,500</b></td><td><b>~400</b></td><td></td></tr>
     </table>
 
-    <p>The age pyramid is broad-based but narrowing: the median age rose from 17.4 in 1980 to 22.1 in 2024, reflecting both improved infant survival and emigration of young adults. Household size averages 4.8 persons. Approximately 64% of adults are bilingual in Karuyana and Tok Pisin; 21% report functional English.</p>
+    <p>The age structure is inferred to be stable, with high birth rates and significant infant mortality balancing each other; the population has shown no clear sign of either growth or decline over the last several generations of indirect observation. Household size is estimated at 4 to 6 persons.</p>
 
-    <p>Religious affiliation, as self-reported in 2024, was 71% Karuyana ancestral religion (often combined with another tradition), 12% Lutheran, 9% Catholic, and 8% other or none.</p>
+    <p>The Karuyana are monolingual in Karuyana. No bilingualism with any neighbouring or external language has ever been observed.</p>
 
     <h2 id="politics">Government and political system</h2>
 
@@ -665,18 +721,11 @@
 
     <h2 id="admin">Administration</h2>
 
-    <p>Since 1975, the Karuyana operate within the framework of Papua New Guinea while preserving a substantial sphere of customary self-administration. The arrangement rests on three layers:</p>
+    <p>The Karuyana have <b>no external administrative layer</b>. They are not part of any state, province, district, or local government. No tax is paid to any outside authority; no census is taken; no permit, identity document, or external title applies in the Telahari basin. All administration is internal and customary.</p>
 
-    <table class="wikitable">
-      <tr><th>Layer</th><th>Authority</th><th>Domain</th></tr>
-      <tr><td>State</td><td>Government of Papua New Guinea, Eastern Highlands Province</td><td>National law, currency, passports, public health, primary education</td></tr>
-      <tr><td>Local government</td><td>Asaroa Local-Level Government (one Karuyana ward councillor)</td><td>Roads, ward registry, ward court, water supply</td></tr>
-      <tr><td>Customary</td><td>Council of Great Men</td><td>Land tenure, marriage, initiation, salt rights, ritual calendar, internal disputes</td></tr>
-    </table>
+    <p>The single layer of administration is the Council of Great Men, which decides land allocation, marriage, initiation calendars, salt rights, dispute resolution, and the maintenance of the ridge look-out network. Customary land tenure is collective: no garden plot may be alienated, and usufruct is allocated season by season by the relevant <i>aulu</i>.</p>
 
-    <p>The Karuyana ward councillor is elected by all adult residents (men and women) under the national electoral law of Papua New Guinea. By a long-standing convention, the councillor is also a recognised member of the Council of Great Men, but this is not required by either body. The current councillor (since 2022) is Mara Tene-Wula, the third Karuyana woman to hold the post.</p>
-
-    <p>Customary land tenure remains collective. No Karuyana garden plot can be sold; usufruct is allocated by the Council and recorded in the <i>Karuyana Customary Code</i>, a registry first written in 1971 and revised three times since. The Code is not legally binding under Papua New Guinean law, but its provisions are routinely cited in ward court hearings concerning Karuyana parties.</p>
+    <p>Decisions of the Council are not written. They are transmitted through the men's house and confirmed at the next plenary by the absence of dissent. The continuity of a decision over several plenaries is itself the form of its codification.</p>
 
     <h2 id="economy">Economy</h2>
 
@@ -685,7 +734,7 @@
       <div class="caption">Bars of Karuyana vegetal salt drying outside the cooperative warehouse, Vinaka-Ulun.</div>
     </div>
 
-    <p>The Karuyana economy is a hybrid system in which a Neolithic-origin salt industry is articulated with subsistence horticulture, cash cropping (coffee, cardamom), and remittances from urban workers. The household is the basic unit of consumption; the cooperative is the basic unit of monetised production.</p>
+    <p>The Karuyana economy is fully <b>autarkic</b>. No good circulates into or out of the basin. The salt industry is the largest single activity, but its output is consumed entirely within the valleys, in domestic cooking and in ritual exchange. There is no money, no market, no trade with any external party, and no wage labour.</p>
 
     <h3 id="salt">The salt industry</h3>
     <p>The defining feature of the Karuyana economy, both before and after contact, is the production of <b>vegetal salt</b> from the grass <i>Coix lachryma-jobi</i> (commonly known as Job's tears). The technique, which appears to have been refined locally over several centuries, proceeds in four stages:<sup class="reference">[11]</sup></p>
@@ -697,64 +746,61 @@
     </ol>
     <p>Each finished bar weighs between 350 and 500 grams. Bars are graded by the Master of Salt and stamped with the cooperative mark; first-grade bars are exported, second-grade bars circulate internally, and third-grade bars are reserved for ritual use.</p>
 
-    <h3 id="trade">Trade networks</h3>
-    <p>Pre-contact, Karuyana salt circulated along ridge trails as far as the Markham valley, exchanged for stone axes, marine shells, bird-of-paradise plumes, and pigs. The salt was the only Karuyana product capable of crossing the ethnic boundary, and the trade conferred substantial prestige on the Master of Salt without altering the internal hierarchy.</p>
-    <p>Today, Karuyana salt is sold through three channels: a regional speciality market in Goroka, a fair-trade contract with two restaurants in Port Moresby, and direct online sales to customers in Australia and Singapore. The export channel was opened in 2008 by the cooperative reform.</p>
+    <h3 id="trade">Internal exchange</h3>
+    <p>Salt does not leave the basin. Within the valleys, salt bars circulate as the principal medium of ritual transaction, alongside pigs and shell ornaments collected from the karst sinkholes (where shells from a former, marine, geological era are occasionally recovered). The Master of Salt allocates production between hamlets according to the demands of the ritual calendar.</p>
 
-    <h3 id="modern-econ">Integration with the kina economy</h3>
+    <p>There is no currency, no merchant class, no market, and no debt instrument. All exchange is direct, named, and witnessed. The total annual circulation of salt within the basin is estimated at 4 to 5 tonnes, a figure consistent across several decades of indirect observation.</p>
+
+    <h3 id="modern-econ">Distribution and redistribution</h3>
 
     <table class="wikitable">
-      <tr><th>Sector</th><th>Share of Karuyana cash income (2023)</th><th>Notes</th></tr>
-      <tr><td>Vegetal salt (cooperative)</td><td>34%</td><td>Half exported, half regional</td></tr>
-      <tr><td>Coffee (smallholder)</td><td>21%</td><td>Sold via Goroka co-op buyers</td></tr>
-      <tr><td>Cardamom and minor crops</td><td>9%</td><td>Recent diversification</td></tr>
-      <tr><td>Wage labour (Asaroa, Goroka, Port Moresby)</td><td>18%</td><td>Roads, schools, hospitality</td></tr>
-      <tr><td>Remittances</td><td>11%</td><td>Mainly from coastal towns</td></tr>
-      <tr><td>Government transfers</td><td>7%</td><td>Pensions, school subsidies</td></tr>
+      <tr><th>Channel</th><th>Estimated share of internal flows</th><th>Notes</th></tr>
+      <tr><td>Household production for own consumption</td><td>~55%</td><td>Direct subsistence (gardens, pigs, salt for cooking)</td></tr>
+      <tr><td>Ritual gifting (initiation, bridewealth, compensation)</td><td>~28%</td><td>Salt bars, pigs, shell ornaments</td></tr>
+      <tr><td>Council redistribution (Council feasts, public works)</td><td>~12%</td><td>Re-roofing of men's houses, ridge-path repair</td></tr>
+      <tr><td>Reserve (ritual storage, insurance against drought)</td><td>~5%</td><td>Held collectively by the Master of Salt</td></tr>
     </table>
 
-    <p>The cooperative, formally registered as the Vinaka Salt and Garden Cooperative, distributes net surplus on a fixed schedule: 40% reinvested, 30% paid as household dividends, 20% allocated to ritual obligations of the Council, and 10% to a customary insurance fund used in cases of illness, fire, or crop failure. This arrangement, written into the 1998 reform, is widely cited as a successful adaptation of customary redistribution to the cash economy.<sup class="reference">[12]</sup></p>
-
-    <p>Within the valley, ritual transactions (bridewealth, compensation, initiation gifts) are still routinely settled in salt bars, pigs, and shell ornaments. The kina is used for school fees, transport, manufactured goods, and mobile phone credit. The two systems are deliberately kept distinct: the Council holds that converting ritual obligations into kina would, in time, dissolve the social hierarchy.</p>
+    <p>The Council deliberately maintains a ritual reserve of salt and dried tubers sufficient, by oral rule, to feed the entire population for one full year. The reserve is renewed at each annual salt-burning. This rule is treated as the most important economic decision the Council ever makes, and it is reaffirmed by absence of dissent each year.</p>
 
     <h2 id="culture">Culture and tradition</h2>
 
     <h3 id="initiation">Initiation cycle</h3>
-    <p>Karuyana boys traditionally undergo a graded initiation cycle of seven stages, beginning at age nine with the <i>severance</i> (formerly twelve stages, before the 1962 reform). The boy is removed from his mother's house and admitted to the men's house, where he learns progressively the songs, paths, and finally the secret of the flutes. The cycle concludes between the ages of 17 and 19 with the <i>opening of the breath</i>, after which the young man is eligible to marry.</p>
-    <p>Girls follow a separate, shorter cycle organised within the women's spheres of the hamlets. Although the female cycle has historically received less ethnographic attention, recent fieldwork by Karuyana scholars themselves has begun to document its specific knowledge and prerogatives.<sup class="reference">[13]</sup></p>
+    <p>Karuyana boys undergo a graded initiation cycle of twelve stages, beginning at age nine with the <i>severance</i>. The boy is removed from his mother's house and admitted to the men's house, where he learns progressively the songs, paths, and finally the secret of the flutes. The cycle concludes between the ages of 19 and 22 with the <i>opening of the breath</i>, after which the young man is eligible to marry. The full twelve stages are preserved without compression: there is no external schedule that would require any shortening.</p>
+    <p>Girls follow a separate cycle of seven stages organised within the women's spheres of the hamlets, with its own songs, plants, and prerogatives. The female cycle is less publicly visible than the male one but is, by oral tradition, the older of the two.</p>
 
     <h3 id="mens-house">The men's house</h3>
     <p>Each settlement maintains an <b>aulun</b>, a long timber building oriented along the ridge axis. The men's house is the political and religious centre of the hamlet: the Council deliberates there, novices sleep there during initiation phases, and the sacred flutes are stored in a closed inner room. Women and uninitiated boys are forbidden to enter, although a side platform is reserved for joint announcements.</p>
 
     <h3 id="flutes">The hidden flutes</h3>
-    <p>The <i>vetera</i>, paired bamboo flutes of the central Telahari, are the most sacred objects of Karuyana culture. According to esoteric tradition transmitted in the men's house, the flutes were originally crafted by women and only later "taken" by men; this admission, made publicly only in 1998, is now part of the Council's official narrative. The sound of the flutes is said to be the breath of the ancestor Wula-Karu and to sustain the fertility of gardens and the courage of warriors.</p>
+    <p>The <i>vetera</i>, paired bamboo flutes of the central Telahari, are the most sacred objects of Karuyana culture. According to esoteric tradition transmitted in the men's house, the flutes were originally crafted by women and only later "taken" by men; this fact is held secret from the wider Karuyana community and is revealed only at the twelfth stage of male initiation. The sound of the flutes is said to be the breath of the ancestor Wula-Karu and to sustain the fertility of gardens and the courage of warriors.</p>
 
     <h3 id="kinship">Kinship and marriage</h3>
-    <p>The Karuyana practise patrilineal descent organised into roughly eleven named clans (<i>tula</i>). Marriage is exogamous at the clan level and traditionally arranged through sister exchange, although the cooperative reform of 1998 also recognised bridewealth payments in salt and kina. Polygyny is permitted but rare in practice (under 4% of married men in 2024).</p>
+    <p>The Karuyana practise patrilineal descent organised into eleven named clans (<i>tula</i>). Marriage is exogamous at the clan level and arranged through sister exchange, supplemented by bridewealth payments in salt bars and pigs. Polygyny is permitted but rare in practice. With a closed gene pool of fewer than 2,500 individuals, the Council strictly enforces the clan exogamy rule, and the marriage geography is one of the most carefully managed aspects of Karuyana life.</p>
 
     <h2 id="religion">Religion and mythology</h2>
 
     <p>The Karuyana religion is centred on a cosmogony in which the ancestor <b>Wula-Karu</b> shaped the valleys with the breath of the first flute, and on the ongoing maintenance of that breath by the men's house. Ritual life follows the salt-burning calendar, with three principal ceremonies each year. Ancestors are not worshipped in a personal sense but are addressed as a continuous medium through which authority and fertility flow.</p>
 
-    <p>Lutheran and Catholic missions have been active among the Karuyana since the late 1950s. Most converted households continue to participate in customary rituals, a coexistence that local theologians describe as "double belonging". The senior Lutheran pastor of Asaroa, since 2017 a Karuyana woman, has publicly defended this arrangement.</p>
+    <p>No other religious tradition is present among the Karuyana. There has been no missionary activity of any kind, no proselytisation, and no observed influence from any external system of belief. Foundational texts and figures of the world religions are entirely absent from Karuyana thought.</p>
 
     <h2 id="health">Health and medicine</h2>
 
-    <p>Karuyana medicine combines a developed local pharmacopeia (more than 80 documented plant species, principally bark and leaf preparations) with a diagnostic framework in which illness is read as a <i>social misalignment</i>. A persistent illness is therefore addressed at two levels in parallel: medical treatment by the shaman or by the Asaroa health centre, and a ritual restoration of the patient's place in the kinship and cooperative network.</p>
-    <p>Maternal and child mortality have fallen sharply since the opening of the Asaroa health post in 1971 and the road in 1983. Endemic challenges remain: malaria at lower altitudes, tuberculosis among returning migrant workers, and, since 2015, anxiety disorders among initiation-age boys whose schedules now alternate between the men's house and the secondary school.</p>
+    <p>Karuyana medicine combines a developed local pharmacopeia (more than 80 plant species in regular use, principally bark and leaf preparations) with a diagnostic framework in which illness is read as a <i>social misalignment</i>. A persistent illness is therefore addressed at two levels in parallel: pharmacological treatment by a shaman, and a ritual restoration of the patient's place in the kinship network.</p>
+    <p>The Karuyana have no exposure to any of the diseases of contact (smallpox, measles, influenza, tuberculosis, COVID-19). The principal local health challenges are estimated to be infant mortality from gastrointestinal infections, periodic outbreaks of a respiratory illness whose pathogen is not identified, and isolated injuries from gardening and salt-pit work. Average life expectancy is inferred to be moderate but stable, with a small population of recognised elders living past seventy.</p>
 
     <h2 id="flag">Flag and symbols</h2>
 
-    <p>The flag of the Karuyana Council was adopted on 14 June 1971, six weeks after the formal reconstitution of the Council. The design is the work of three elders and a Lutheran teacher, who collaborated in the back room of the Vinaka-Ulun mission school. The elements of the flag are interpreted as follows:</p>
+    <p>The Karuyana do not have a flag in the modern political sense. The image reproduced in the infobox is a graphical reconstruction of the central <b>painted panel of the men's house at Vinaka-Ulun</b>, the only painted surface that is renewed at each annual salt-burning. The panel is not flown, displayed publicly, or treated as a banner; it is repainted on the same wood every year, by the Keeper of the Flutes, and is the most visible Karuyana symbol of collective identity. Its elements are interpreted as follows:</p>
     <ul>
       <li><b>Black field.</b> The night of the men's house, in which the breath of the ancestors is heard.</li>
       <li><b>Two gold bars (top and bottom).</b> The opening and closing of the salt-burning year; also the two ridges that bound the Vinaka valley.</li>
       <li><b>Mountain.</b> The ridge of Wula, the highest ancestral site; the two layered triangles represent the visible peak and the inner peak, which only initiated men may approach.</li>
-      <li><b>Crossed flutes (gold).</b> The two <i>vetera</i> of the central men's house, with their twelve finger-stops representing the twelve traditional initiation stages.</li>
-      <li><b>Salt bar (gold, base).</b> The economic foundation of the polity; the three vertical lines mark the three grades of bar produced by the cooperative.</li>
+      <li><b>Crossed flutes (gold).</b> The two <i>vetera</i> of the central men's house, with their twelve finger-stops representing the twelve initiation stages of the male cycle.</li>
+      <li><b>Salt bar (gold, base).</b> The economic foundation of the polity; the three vertical lines mark the three grades of bar (ritual, household, reserve) produced each year.</li>
     </ul>
 
-    <p>The flag is flown over the Council building on ceremonial days and outside the cooperative warehouse during salt sales. It has no legal status under Papua New Guinean law but is treated, by long convention, with the same respect as the national flag.</p>
+    <p>By long-standing rule, the panel is repainted each year using the same pigments (ash, ochre, soot bound with pig fat) and the same proportions. Any deviation is treated by the Council as evidence that the Keeper of the Flutes has lost the breath, and the office is reassigned.</p>
 
     <h2 id="resources">Resources and advancements</h2>
 
@@ -776,8 +822,8 @@
           <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 8v12h6v-6h4v6h6V8z"/></svg>
           Forest pharmacopeia
         </div>
-        More than 80 plant species documented for medicinal use, including 14 endemic to the Telahari basin. Knowledge held primarily by senior shamans and women herbalists.
-        <div class="rc-meta">Indexed in the 2019 Telahari Ethnobotanical Register</div>
+        More than 80 plant species in regular medicinal use, including 14 species endemic to the Telahari basin. Knowledge is held by senior shamans and women herbalists, and is transmitted orally.
+        <div class="rc-meta">Tenure: oral, transmitted through initiation</div>
       </div>
       <div class="res-card">
         <div class="rc-title">
@@ -800,16 +846,16 @@
           <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l8-14 8 14zM4 20h16M9 14h6"/></svg>
           Timber and bamboo
         </div>
-        Selective harvesting of <i>Castanopsis</i> and montane bamboo for the men's house, salt pits, and flute manufacture. A 2019 forestry plan caps annual extraction at 1.4% of standing volume.
-        <div class="rc-meta">Co-managed with the Asaroa LLG forestry office</div>
+        Selective harvesting of <i>Castanopsis</i> and montane bamboo for the men's house, salt pits, and flute manufacture. The Council enforces an oral rule capping annual extraction below the natural regeneration rate of each stand.
+        <div class="rc-meta">Tenure: collective, supervised by the Walker of Paths</div>
       </div>
       <div class="res-card">
         <div class="rc-title">
           <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-          Ridge corridors
+          Ridge look-out network
         </div>
-        Pre-contact trade trails connecting the Telahari basin to the Markham valley and the Lamari river. Now partially reactivated for guided ethno-tourism.
-        <div class="rc-meta">Mapped by the 2022 Karuyana Trail Survey</div>
+        Eleven look-out posts on the surrounding ridges, manned in rotation by junior initiates. Their function is to detect any approach from outside the basin and to trigger the withdrawal protocol.
+        <div class="rc-meta">Tenure: collective, rotation managed by the men's house</div>
       </div>
     </div>
 
@@ -818,98 +864,94 @@
     <p>The following table summarises the principal areas in which the Karuyana have advanced as a polity. The "consolidation" column reflects the Council's own assessment as recorded in the 2024 annual report.</p>
 
     <div class="prog-row"><div>Salt chemistry</div><div class="prog-bar"><div class="prog-fill" style="width:96%"></div></div><div class="prog-val">96%</div></div>
-    <div class="prog-row"><div>Cooperative governance</div><div class="prog-bar"><div class="prog-fill" style="width:88%"></div></div><div class="prog-val">88%</div></div>
-    <div class="prog-row"><div>Customary law codification</div><div class="prog-bar"><div class="prog-fill" style="width:72%"></div></div><div class="prog-val">72%</div></div>
-    <div class="prog-row"><div>Ethnobotany register</div><div class="prog-bar"><div class="prog-fill" style="width:65%"></div></div><div class="prog-val">65%</div></div>
-    <div class="prog-row"><div>Bilingual education</div><div class="prog-bar"><div class="prog-fill" style="width:61%"></div></div><div class="prog-val">61%</div></div>
-    <div class="prog-row"><div>Female political representation</div><div class="prog-bar"><div class="prog-fill" style="width:48%"></div></div><div class="prog-val">48%</div></div>
-    <div class="prog-row"><div>Climate adaptation (high gardens)</div><div class="prog-bar"><div class="prog-fill" style="width:34%"></div></div><div class="prog-val">34%</div></div>
-    <div class="prog-row"><div>Digital archiving of oral tradition</div><div class="prog-bar"><div class="prog-fill" style="width:22%"></div></div><div class="prog-val">22%</div></div>
+    <div class="prog-row"><div>Internal redistribution rules</div><div class="prog-bar"><div class="prog-fill" style="width:92%"></div></div><div class="prog-val">92%</div></div>
+    <div class="prog-row"><div>Initiation cycle continuity</div><div class="prog-bar"><div class="prog-fill" style="width:90%"></div></div><div class="prog-val">90%</div></div>
+    <div class="prog-row"><div>Ridge look-out network</div><div class="prog-bar"><div class="prog-fill" style="width:88%"></div></div><div class="prog-val">88%</div></div>
+    <div class="prog-row"><div>Ritual reserve management</div><div class="prog-bar"><div class="prog-fill" style="width:84%"></div></div><div class="prog-val">84%</div></div>
+    <div class="prog-row"><div>Pharmacopeia transmission</div><div class="prog-bar"><div class="prog-fill" style="width:78%"></div></div><div class="prog-val">78%</div></div>
+    <div class="prog-row"><div>Concealment from above (smoke discipline)</div><div class="prog-bar"><div class="prog-fill" style="width:71%"></div></div><div class="prog-val">71%</div></div>
+    <div class="prog-row"><div>Climate buffering (high gardens)</div><div class="prog-bar"><div class="prog-fill" style="width:42%"></div></div><div class="prog-val">42%</div></div>
 
-    <p style="font-size:12px; color:#54595d; font-style:italic;">Self-assessment by the Council of Great Men, 2024 annual report. Values represent the share of stated objectives the Council considers achieved.</p>
+    <p style="font-size:12px; color:#54595d; font-style:italic;">Indirect assessment, reconstructed from observation and inference. Values represent the estimated share of each domain that has been internally consolidated within the Karuyana polity.</p>
 
-    <h3 id="milestones">Timeline of milestones</h3>
+    <h3 id="milestones">Internal milestones (oral chronology)</h3>
+
+    <p>The Karuyana use no written calendar and no fixed numbering of years. Internal time is reckoned by salt-burning cycles and by the succession of Speakers of the Breath. The events below are translations of the principal oral milestones, ordered by relative depth and dated only approximately.</p>
 
     <div class="timeline">
-      <div class="tl-item"><span class="tl-year">1956.</span> <span class="tl-title">First contact.</span> Australian patrol reaches the upper Vinaka river. Karuyana negotiate conditional hospitality.</div>
-      <div class="tl-item"><span class="tl-year">1962.</span> <span class="tl-title">Initiation reform.</span> Cycle compressed from twelve to seven stages to allow attendance at the mission school.</div>
-      <div class="tl-item"><span class="tl-year">1971.</span> <span class="tl-title">Council reconstituted.</span> Formal Council of Great Men, adoption of the flag, first written code of customary law.</div>
-      <div class="tl-item"><span class="tl-year">1983.</span> <span class="tl-title">Vinaka-Asaroa road opened.</span> Travel time to the regional centre falls from two days to four hours.</div>
-      <div class="tl-item"><span class="tl-year">1991.</span> <span class="tl-title">First university graduate.</span> Kalu Aulu defends a thesis on Karuyana salt production at the University of Goroka.</div>
-      <div class="tl-item"><span class="tl-year">1998.</span> <span class="tl-title">Cooperative reform.</span> Vinaka Salt and Garden Cooperative formally registered; surplus distribution rules codified.</div>
-      <div class="tl-item"><span class="tl-year">1998.</span> <span class="tl-title">Public acknowledgement.</span> The Council formally recognises the female origin of the sacred flutes.</div>
-      <div class="tl-item"><span class="tl-year">2008.</span> <span class="tl-title">Export channel.</span> First fair-trade contract for vegetal salt with restaurants in Port Moresby.</div>
-      <div class="tl-item"><span class="tl-year">2017.</span> <span class="tl-title">Female pastor.</span> A Karuyana woman is ordained as senior Lutheran pastor of Asaroa.</div>
-      <div class="tl-item"><span class="tl-year">2019.</span> <span class="tl-title">Ethnobotanical register.</span> Publication of the Telahari Ethnobotanical Register, with 80+ documented species.</div>
-      <div class="tl-item"><span class="tl-year">2021.</span> <span class="tl-title">Petition for legal recognition.</span> The Council asks the national government to recognise the Customary Code in ward courts.</div>
-      <div class="tl-item"><span class="tl-year">2022.</span> <span class="tl-title">Third female ward councillor.</span> Mara Tene-Wula elected; she is also a recognised member of the Council.</div>
-      <div class="tl-item"><span class="tl-year">2023.</span> <span class="tl-title">High-altitude gardens.</span> Controlled experiment with two new salt-grass gardens at 2,300 m in response to the 2015 to 2017 drought.</div>
-      <div class="tl-item"><span class="tl-year">2024.</span> <span class="tl-title">Digital archive launched.</span> First batch of recorded oral histories deposited with the Goroka Cultural Centre.</div>
+      <div class="tl-item"><span class="tl-year">In the time of Wula-Karu.</span> <span class="tl-title">The breath of the first flute.</span> The valleys are carved; the first ancestors are placed; the world beyond the ridges is declared not for them.</div>
+      <div class="tl-item"><span class="tl-year">Many salt-burnings ago.</span> <span class="tl-title">The first lookout posts.</span> The ridge network is established to detect any approach from outside.</div>
+      <div class="tl-item"><span class="tl-year">The long drought.</span> <span class="tl-title">The first ritual reserve.</span> Following a multi-year drought, the Council establishes the rule of a one-year reserve renewed at every salt-burning.</div>
+      <div class="tl-item"><span class="tl-year">The long cold.</span> <span class="tl-title">Withdrawal to higher ground.</span> A period of low temperatures forces a reorganisation of the gardens; the twelve-stage initiation cycle is consolidated in its present form.</div>
+      <div class="tl-item"><span class="tl-year">The breaking of the second flute.</span> <span class="tl-title">Reaffirmation of the secret.</span> A flute is destroyed; the Council reaffirms that the secret of the female origin must remain within the men's house.</div>
+      <div class="tl-item"><span class="tl-year">The closing of the high pass.</span> <span class="tl-title">A landslide seals the last ridge defile.</span> The basin becomes physically unreachable on foot, and the Council declares the geographical isolation complete.</div>
+      <div class="tl-item"><span class="tl-year">The smoke discipline.</span> <span class="tl-title">A new rule on cooking fires.</span> Following the unexplained passage of a distant noise overhead, all hamlets are required to cook before dawn and after dusk to limit the visibility of smoke.</div>
+      <div class="tl-item"><span class="tl-year">The current cycle.</span> <span class="tl-title">Continuity affirmed.</span> The Council reports, at every plenary, that the same fifteen hamlets, the same ritual calendar, and the same Council exist as in the time of Wula-Karu.</div>
     </div>
 
-    <h3 id="external">External resources</h3>
+    <h3 id="external">Indirect resources of evidence</h3>
+
+    <p>Because no direct contact has occurred, no archive, museum, or institution holds primary materials produced by or for the Karuyana. The resources below are <i>indirect</i> evidence sources from which inferences about the population have been reconstructed.</p>
 
     <table class="wikitable">
-      <tr><th>Resource</th><th>Type</th><th>Custodian</th><th>Access</th></tr>
-      <tr><td>Karuyana Customary Code (1971, rev. 1989, 2004, 2019)</td><td>Legal text</td><td>Council of Great Men</td><td>Public extracts; full text restricted</td></tr>
-      <tr><td>Telahari Ethnobotanical Register (2019)</td><td>Scientific database</td><td>University of Goroka</td><td>Open access; DOI pending</td></tr>
-      <tr><td>Vinaka Salt and Garden Cooperative archive</td><td>Administrative records</td><td>Cooperative</td><td>On request, Vinaka-Ulun warehouse</td></tr>
-      <tr><td>Asaroa Patrol Reports (1956 to 1975)</td><td>Colonial archive</td><td>National Archives of Australia</td><td>Public, NAA series A2024</td></tr>
-      <tr><td>Karuyana Oral History Archive</td><td>Audio recordings</td><td>Goroka Cultural Centre</td><td>Restricted to recognised researchers</td></tr>
-      <tr><td>Telahari Trail Survey (2022)</td><td>Maps and GPS tracks</td><td>Walker of Paths office</td><td>Public summary; full GPS restricted</td></tr>
-      <tr><td>Karuyana Cultural Festival (annual, August)</td><td>Public event</td><td>Council of Great Men</td><td>Open to visitors with prior notice</td></tr>
+      <tr><th>Resource</th><th>Type</th><th>Origin</th><th>Use</th></tr>
+      <tr><td>High-altitude photography of the Telahari basin</td><td>Aerial imagery</td><td>Distant overflights</td><td>Counting hamlets, mapping garden terraces</td></tr>
+      <tr><td>Acoustic recordings of ridge-borne flute sound</td><td>Audio</td><td>Long-range microphones on the surrounding peaks</td><td>Inferring ritual calendar and population gatherings</td></tr>
+      <tr><td>Drift artefacts in karst sinkholes outside the basin</td><td>Material</td><td>Underground hydrology</td><td>Identifying salt-bar grades, woven mats, broken flute fragments</td></tr>
+      <tr><td>Smoke-plume observations at dawn and dusk</td><td>Visual</td><td>Distant viewpoints</td><td>Estimating active hearths and household counts</td></tr>
+      <tr><td>Comparative anthropology of Highland systems</td><td>Theory</td><td>General literature</td><td>Generating hypotheses about Great Man dynamics</td></tr>
+      <tr><td>Lithic and pollen records of the wider region</td><td>Palaeoecology</td><td>Cores from neighbouring valleys</td><td>Reconstructing climate periods (the long drought, the long cold)</td></tr>
     </table>
 
-    <h2 id="contemporary">Contemporary issues</h2>
+    <p style="font-size:12px; color:#54595d; font-style:italic;">No item in the table involves entry into the basin, contact with any Karuyana person, or removal of any object from inhabited Karuyana sites.</p>
 
-    <p>Three issues have dominated Council deliberations in the 2020s:</p>
+    <h2 id="contemporary">Contemporary internal issues</h2>
+
+    <p>Internal Karuyana deliberations, as inferred from indirect observation, are dominated by three issues:</p>
     <ol>
-      <li><b>Climate.</b> The 2015 to 2017 drought damaged 38% of the salt-grass gardens. The Council has authorised a controlled experiment with two new garden sites at higher altitude, on terraces previously reserved for ritual use.</li>
-      <li><b>Education.</b> The compression of the initiation cycle to fit the school calendar is a recurring source of debate. A 2023 survey of Karuyana parents showed 64% in favour of preserving the seven-stage cycle, 22% in favour of further compression, and 14% in favour of abolition.</li>
-      <li><b>Recognition.</b> Since 2021, the Council has petitioned the national government for formal recognition of the <i>Karuyana Customary Code</i> as a binding source of law in ward court hearings concerning Karuyana parties. The petition is pending.</li>
+      <li><b>Climate.</b> Several recent salt-burnings have shown reduced yields, and the Council appears to have authorised the opening of new salt-grass plots at higher altitude, on slopes previously reserved for ritual use.</li>
+      <li><b>Concealment.</b> The increasing frequency of distant noises overhead (interpreted by the Karuyana as travelling spirits) has led the Council to extend the smoke-discipline rules to all hamlets, and to reinforce the ridge look-out network.</li>
+      <li><b>Demographic balance.</b> With a closed gene pool of fewer than 2,500 individuals, the management of clan exogamy has become a recurring subject of Council deliberation. Inferences from generational counts suggest that the Council has begun to authorise a small number of dispensations from sister-exchange in favour of arranged matches between distant hamlets.</li>
     </ol>
 
     <h2 id="seealso">See also</h2>
     <ul>
       <li><a class="red" href="#">Great Man system</a></li>
-      <li><a class="red" href="#">Anga peoples</a></li>
+      <li><a class="red" href="#">Uncontacted peoples</a></li>
+      <li><a class="red" href="#">Voluntary isolation</a></li>
       <li><a class="red" href="#">Vegetal salt</a></li>
-      <li><a class="red" href="#">Eastern Highlands Province</a></li>
-      <li><a class="red" href="#">Customary land tenure in Papua New Guinea</a></li>
+      <li><a class="red" href="#">Autarky</a></li>
       <li><a class="red" href="#">Coix lachryma-jobi</a></li>
     </ul>
 
     <h2 id="refs">References</h2>
+    <p style="font-size:12px; color:#54595d; font-style:italic;">All references below are speculative or comparative. None involves direct contact with the Karuyana, since no such contact has ever occurred.</p>
     <div class="references">
       <ol>
-        <li>Tane, M. (2019). <i>The Karuyana: a portrait</i>. Goroka: Telahari Press, p. 14.</li>
-        <li>Aulu Karuyana (1998). <i>Customary Code of the Karuyana, second revision</i>. Vinaka-Ulun, art. 1 to 4.</li>
-        <li>Wakimu, S. and Bretones, P. (2021). "Negotiated continuity in the Telahari", <i>Journal of Highland Studies</i>, 12(3), pp. 41 to 68.</li>
-        <li>Fontaine, A. (2017). <i>Engineering homeostasis: a comparative study of stateless societies</i>. Paris: Editions du CNRS, ch. 4.</li>
-        <li>Clarke-De-Dromantin, W. (2015). "On the names of the Telahari", <i>Oceania</i>, 85(2), pp. 163 to 181.</li>
-        <li>Asaroa Archaeological Survey (2009). <i>Final report</i>. University of Goroka, pp. 22 to 31.</li>
-        <li>Aulu, K. (1991). <i>Salt and ridge: a Karuyana history</i>. Port Moresby: Niugini Press, ch. 2.</li>
-        <li>Australian Patrol Reports, Eastern Highlands District, 1956 to 1962, National Archives of Australia.</li>
-        <li>Vinaka Salt and Garden Cooperative (2018). <i>Twenty years of cooperation</i>. Vinaka-Ulun, pp. 9 to 22.</li>
-        <li>Godelier, M. (1986). <i>The making of Great Men</i>. Cambridge University Press, ch. 1; applied to the Karuyana in Fontaine (2017).</li>
-        <li>Tane, M. (2012). "The four stages of Karuyana salt", <i>Highland Ethnobotany</i>, 4(1), pp. 88 to 104.</li>
-        <li>Wakimu, S. (2019). "Distributing the surplus: the 1998 Karuyana cooperative reform", <i>Pacific Economic Review</i>, 27(4), pp. 511 to 533.</li>
-        <li>Yara-Mara, L. (2022). <i>What women keep: female knowledge in the Telahari</i>. Goroka: Telahari Press.</li>
+        <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>. Working monograph, ch. 1: "On a population that has never been contacted".</li>
+        <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>, ch. 3: "Salt as the closed engine of an autarkic economy".</li>
+        <li>Comparative note: <i>vetera</i> from <i>karu</i>; reconstruction by analogy with isolated Highland languages.</li>
+        <li>Karuyana oral cosmogony, as transmitted through the indirect record. Cross-referenced with comparative Highland mythology.</li>
+        <li>Comparative theory: Godelier, M. (1986). <i>The making of Great Men</i>. Cambridge University Press, ch. 1. Applied <i>by analogy</i> to the Karuyana, who have never been studied in person.</li>
+        <li>Bretones, P. (2025). "On the architecture of basins that resist contact". Working note, ch. of <i>The Secret of the Tribe</i>.</li>
+        <li>Indirect aerial counts of cooking-fire smoke plumes, multi-year series. Used to estimate hamlet activity.</li>
+        <li>Fontaine, A. (2025). "Acoustic signatures of ritual gatherings inferred from ridge-borne flute sound". Working note.</li>
+        <li>Clarke-De-Dromantin, W. (2025). "Drift artefacts from the Telahari karst: what the basin lets out". Working note.</li>
+        <li>Comparative theory: literature on uncontacted peoples and on the ethics of non-contact policy.</li>
       </ol>
     </div>
 
     <h2 id="further">Further reading</h2>
     <ul>
-      <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>. Paris: working monograph.</li>
-      <li>Godelier, M. (1986). <i>The making of Great Men: male domination and power among the New Guinea Baruya</i>. Cambridge University Press. (Comparative reference.)</li>
-      <li>Strathern, A. and Stewart, P. (2000). <i>Arrow Talk: transaction, transition, and contradiction in New Guinea Highlands history</i>. Kent State University Press.</li>
-      <li>UNESCO (2018). <i>Intangible cultural heritage in the Eastern Highlands</i>, regional report.</li>
+      <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>. Working monograph (this article is a derivative summary).</li>
+      <li>Comparative anthropological literature on Great Man systems, autarkic Highland economies, and uncontacted peoples.</li>
+      <li>Comparative palaeoecological literature on Highland climate cycles, used here to date the long drought and the long cold.</li>
     </ul>
 
     <div class="clear"></div>
 
     <p style="font-size:11px; color:#54595d; margin-top:24px; border-top:1px solid #c8ccd1; padding-top:8px;">
-      <b>Note for readers:</b> The Karuyana people, the Telahari Highlands, and all named institutions, persons, and references on this page are fictional and have been created as a creative exercise based on a presentation by Amaury Fontaine, Paul-Emile Bretones, and Wulfran Clarke-De-Dromantin. They are not intended to represent any real ethnographic record.
+      <b>Note for readers:</b> The Karuyana people, the Telahari Highlands, and all named institutions, persons, and references on this page are fictional and have been created as a creative exercise based on a presentation by Amaury Fontaine, Paul-Emile Bretones, and Wulfran Clarke-De-Dromantin. The article describes a thought-experimental population that, within its own fiction, has never been contacted by any outside group; all factual statements are therefore presented as inferences rather than as observed facts.
     </p>
   </div>
 
@@ -920,7 +962,7 @@
 </div>
 <script>
 (function () {
-  const STORAGE_KEY = 'karuyana_wiki_draft_v1';
+  const STORAGE_KEY = 'karuyana_wiki_draft_v2';
   const SELECTORS = [
     '.content h1.firstHeading',
     '.content h2', '.content h3', '.content h4',
@@ -928,6 +970,7 @@
     '.content td', '.content th',
     '.content blockquote',
     '.content .caption',
+    '.thumb .ph',
     '.infobox .ib-title',
     '.infobox .ib-subtitle',
     '.infobox th', '.infobox td',
@@ -943,14 +986,19 @@
 
   const btnEdit = document.getElementById('btnEdit');
   const btnSave = document.getElementById('btnSave');
+  const btnSaveFile = document.getElementById('btnSaveFile');
   const btnDownload = document.getElementById('btnDownload');
   const btnReset = document.getElementById('btnReset');
   const status = document.getElementById('etStatus');
 
+  let isLocalServer = false;
+
+  function setStatus(msg) { status.textContent = msg; }
+
   function loadDraft() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return false;
+      if (!raw) return 0;
       const draft = JSON.parse(raw);
       let restored = 0;
       editables.forEach(el => {
@@ -960,13 +1008,10 @@
           restored++;
         }
       });
-      if (restored > 0) {
-        status.textContent = 'Local draft restored (' + restored + ' edits). Read mode.';
-      }
-      return restored > 0;
+      return restored;
     } catch (e) {
       console.warn('Failed to load draft', e);
-      return false;
+      return 0;
     }
   }
 
@@ -978,9 +1023,9 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
       const t = new Date().toLocaleTimeString();
-      status.textContent = 'Edit mode. Auto-saved at ' + t + '.';
+      setStatus('Edit mode. Auto-saved to browser at ' + t + '.');
     } catch (e) {
-      status.textContent = 'Save failed: ' + e.message;
+      setStatus('Browser save failed: ' + e.message);
     }
   }
 
@@ -990,18 +1035,86 @@
     saveTimer = setTimeout(saveDraft, 600);
   }
 
+  function refreshImageStates() {
+    document.querySelectorAll('.thumb .ph').forEach(ph => {
+      if (ph.querySelector('img')) {
+        ph.classList.add('has-image');
+        if (!ph.querySelector('.img-remove')) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'img-remove';
+          btn.title = 'Remove image';
+          btn.textContent = 'X';
+          ph.appendChild(btn);
+        }
+      } else {
+        ph.classList.remove('has-image');
+      }
+    });
+  }
+
+  function pickImage() {
+    return new Promise(resolve => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.addEventListener('change', () => {
+        const file = input.files && input.files[0];
+        if (!file) { resolve(null); return; }
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+      input.click();
+    });
+  }
+
+  document.addEventListener('click', async (e) => {
+    if (!document.body.classList.contains('editing')) return;
+    const removeBtn = e.target.closest('.img-remove');
+    if (removeBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const ph = removeBtn.closest('.ph');
+      if (!ph) return;
+      const original = ph.getAttribute('data-original-text') || 'Click to add image';
+      ph.innerHTML = original;
+      ph.classList.remove('has-image');
+      scheduleSave();
+      return;
+    }
+    const ph = e.target.closest('.thumb .ph');
+    if (!ph) return;
+    if (e.target.tagName === 'IMG' || ph === e.target || ph.contains(e.target)) {
+      if (!ph.hasAttribute('data-original-text')) {
+        ph.setAttribute('data-original-text', ph.innerHTML);
+      }
+      const dataUrl = await pickImage();
+      if (!dataUrl) return;
+      ph.innerHTML = '<img alt="">' + '<button type="button" class="img-remove" title="Remove image">X</button>';
+      ph.querySelector('img').src = dataUrl;
+      ph.classList.add('has-image');
+      scheduleSave();
+    }
+  });
+
   function setEditing(on) {
     document.body.classList.toggle('editing', on);
     editables.forEach(el => {
-      if (on) el.setAttribute('contenteditable', 'true');
-      else el.removeAttribute('contenteditable');
+      if (on) {
+        if (!el.classList.contains('ph')) el.setAttribute('contenteditable', 'true');
+      } else {
+        el.removeAttribute('contenteditable');
+      }
     });
     btnEdit.textContent = on ? 'Stop editing' : 'Edit';
     btnSave.style.display = on ? 'inline-block' : 'none';
     if (on) {
-      status.textContent = 'Edit mode. Click any text to modify. Auto-saved to your browser.';
+      let extra = isLocalServer ? ' Use "Save to file" to write back to disk.' : '';
+      setStatus('Edit mode. Click text to edit, click an image placeholder to upload.' + extra);
     } else {
-      status.textContent = localStorage.getItem(STORAGE_KEY) ? 'Read mode (local draft active).' : 'Read mode.';
+      setStatus(localStorage.getItem(STORAGE_KEY) ? 'Read mode (local draft active).' : 'Read mode.');
     }
   }
 
@@ -1017,7 +1130,8 @@
     if (e.target.closest('[data-editable]')) scheduleSave();
   });
 
-  btnDownload.addEventListener('click', () => {
+  function getCleanedHTML() {
+    const wasEditing = document.body.classList.contains('editing');
     document.body.classList.remove('editing');
     editables.forEach(el => el.removeAttribute('contenteditable'));
     const clone = document.documentElement.cloneNode(true);
@@ -1025,12 +1139,20 @@
       el.removeAttribute('data-editable');
       el.removeAttribute('data-edit-id');
       el.removeAttribute('contenteditable');
+      el.removeAttribute('data-original-text');
     });
+    clone.querySelectorAll('.img-remove').forEach(btn => btn.remove());
+    clone.querySelectorAll('.thumb .ph.has-image').forEach(ph => ph.classList.remove('has-image'));
     const toolbar = clone.querySelector('.edit-toolbar');
     const banner = clone.querySelector('.edit-banner');
     if (toolbar) toolbar.remove();
     if (banner) banner.remove();
-    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    if (wasEditing) setEditing(true);
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  btnDownload.addEventListener('click', () => {
+    const html = getCleanedHTML();
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1039,7 +1161,33 @@
     document.body.appendChild(a);
     a.click();
     setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 200);
-    status.textContent = 'Downloaded index.html. Replace the file on GitHub to publish.';
+    setStatus('Downloaded index.html (' + html.length + ' bytes).');
+  });
+
+  btnSaveFile.addEventListener('click', async () => {
+    const html = getCleanedHTML();
+    btnSaveFile.disabled = true;
+    btnSaveFile.textContent = 'Saving...';
+    try {
+      const r = await fetch('/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/html' },
+        body: html
+      });
+      const j = await r.json();
+      if (j.ok) {
+        localStorage.removeItem(STORAGE_KEY);
+        setStatus('Saved to index.html (' + j.bytes + ' bytes). Reloading from disk...');
+        setTimeout(() => location.reload(), 600);
+      } else {
+        setStatus('Save failed: ' + j.error);
+      }
+    } catch (e) {
+      setStatus('Save failed: ' + e.message);
+    } finally {
+      btnSaveFile.disabled = false;
+      btnSaveFile.textContent = 'Save to file';
+    }
   });
 
   btnReset.addEventListener('click', () => {
@@ -1048,7 +1196,25 @@
     location.reload();
   });
 
-  loadDraft();
+  async function detectLocalServer() {
+    try {
+      const r = await fetch('/_ping');
+      if (r.ok) {
+        const j = await r.json();
+        if (j && j.local) {
+          isLocalServer = true;
+          btnSaveFile.style.display = 'inline-block';
+        }
+      }
+    } catch (e) {}
+  }
+
+  const restored = loadDraft();
+  refreshImageStates();
+  if (restored > 0) {
+    setStatus('Local draft restored (' + restored + ' edits). Read mode.');
+  }
+  detectLocalServer();
 })();
 </script>
 </body>
