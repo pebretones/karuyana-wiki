@@ -138,13 +138,24 @@
     padding: 12px 8px 8px 8px;
     border-bottom: 1px solid #c8ccd1;
   }
-  .infobox .ib-flag svg {
+  .infobox .ib-flag .ph {
+    width: 240px;
+    margin: 0 auto 6px auto;
+    position: relative;
+    display: block;
+    background: transparent;
+    height: auto;
+    padding: 0;
+  }
+  .infobox .ib-flag .ph svg,
+  .infobox .ib-flag .ph img {
     width: 240px;
     height: 144px;
     border: 1px solid #54595d;
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     display: block;
-    margin: 0 auto 6px auto;
+    object-fit: cover;
+    object-position: center;
   }
   .infobox .ib-flag .flag-caption {
     font-size: 11px;
@@ -438,15 +449,15 @@
     background: #000;
     color: transparent;
   }
-  body.editing .thumb .ph {
+  body.editing .ph {
     cursor: pointer;
     outline: 1px dashed #d4af37;
     outline-offset: 2px;
   }
-  body.editing .thumb .ph:hover {
+  body.editing .ph:hover {
     outline: 2px solid #d4af37;
   }
-  body.editing .thumb .ph::after {
+  body.editing .ph::after {
     content: 'Click to upload image';
     position: absolute;
     top: 6px;
@@ -459,7 +470,7 @@
     font-weight: bold;
     pointer-events: none;
   }
-  body.editing .thumb .ph.has-image::after { content: 'Click to replace'; }
+  body.editing .ph.has-image::after { content: 'Click to replace'; }
   .img-remove {
     position: absolute;
     top: 6px;
@@ -475,8 +486,9 @@
     cursor: pointer;
     display: none;
     font-family: sans-serif;
+    z-index: 5;
   }
-  body.editing .thumb .ph.has-image .img-remove { display: block; }
+  body.editing .ph.has-image .img-remove { display: block; }
   .img-remove:hover { background: rgba(220, 50, 50, 1); }
 </style>
 </head>
@@ -520,6 +532,7 @@
       <div class="ib-title">Karuyana</div>
       <div class="ib-subtitle">Vetera Karuyana<br>"The People of the Hidden Flute"</div>
       <div class="ib-flag">
+        <div class="ph has-image" id="flagSlot">
         <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
           <rect width="300" height="180" fill="#0d0d0d"/>
           <rect x="0" y="0" width="300" height="6" fill="#d4af37"/>
@@ -552,7 +565,8 @@
             <line x1="15" y1="34" x2="15" y2="44" stroke="#8a6d1f" stroke-width="0.5"/>
           </g>
         </svg>
-        <div class="flag-caption">Flag of the Karuyana Council<br>(adopted 1971)</div>
+        </div>
+        <div class="flag-caption">Painted panel of the men's house, Vinaka-Ulun.<br>Repainted yearly by the Keeper of the Flutes.</div>
       </div>
       <table>
         <tr><th>Total population</th><td>estimated 1,800 to 2,500 (oral counts; never externally surveyed)</td></tr>
@@ -574,7 +588,7 @@
 
     <p>The Karuyana speak <i>Karuyana</i>, a language with no known relatives and no observed loanwords. Their society is organised through a <b>Great Man</b> system, in which authority is acquired rather than inherited, and is sustained economically by an autarkic <b>salt industry</b> based on the cultivation and combustion of <i>Coix lachryma-jobi</i> grass.<sup class="reference">[2]</sup> All goods are produced within the valleys; no item of external manufacture has been observed in Karuyana settlements.</p>
 
-    <p>Because the Karuyana have never been contacted, all knowledge of them in this article is presented as a reasoned reconstruction from indirect evidence (terrain surveys, intercepted ritual sound, drift artefacts) and from the comparative anthropology of similarly autarkic Highland societies. The Karuyana refer to their own polity as the <i>Aulu</i> (literally, "the breath that decides").</p>
+    <p>The Karuyana refer to their own polity as the <i>Aulu</i>, literally "the breath that decides". The polity is sustained without writing, without external trade, and without contact: continuity, rather than expansion, is its declared purpose.</p>
 
     <div class="toc">
       <div class="toc-title">Contents</div>
@@ -637,11 +651,6 @@
 
     <h2 id="history">History</h2>
 
-    <div class="thumb">
-      <div class="ph">[Photograph: ridge above Vinaka-Ulun, dawn]</div>
-      <div class="caption">Ridge above Vinaka-Ulun, the largest Karuyana settlement, at dawn.</div>
-    </div>
-
     <h3 id="precontact">Origins and continuous isolation</h3>
     <p>Oral tradition holds that the Karuyana were created by the ancestral being <i>Wula-Karu</i>, who carved the Telahari valleys with the breath of the first flute and warned the first ancestors that the world beyond the ridges did not exist for them. The valleys were said to have closed behind their first generation, and the Karuyana have understood themselves, since that mythical origin, as the only living people.<sup class="reference">[4]</sup></p>
 
@@ -656,15 +665,10 @@
       <li><b>Absence of attractors.</b> The valleys contain no precious metals, no commercial timber stands, and no notable population of game animals. There has been no economic incentive to enter from outside.</li>
     </ul>
 
-    <h3 id="modern">Continuity of internal history</h3>
-    <p>Because the Karuyana have not entered any external record, their history is reconstructed entirely from oral tradition and from indirect ridge-top observation. Internal accounts emphasise <b>continuity</b> rather than change: the same fifteen hamlets, the same ritual calendar, the same Council, the same flute songs are described as having existed since the time of Wula-Karu. Two periods of contraction (a long drought and a long cold) are remembered, but no rupture or transformation comparable to the contact-era upheavals of neighbouring regions.</p>
+    <h3 id="modern">Continuity</h3>
+    <p>Karuyana history is one of <b>continuity</b> rather than change. The same fifteen hamlets, the same ritual calendar, the same Council, the same flute songs are held to have existed since the time of Wula-Karu. Oral tradition remembers two periods of contraction, the long drought and the long cold, but no rupture or transformation. The Council treats this absence of rupture as the principal achievement of Karuyana civilisation.</p>
 
     <h2 id="geography">Geography</h2>
-
-    <div class="thumb left">
-      <div class="ph">[Map: Telahari Highlands, with Karuyana settlements]</div>
-      <div class="caption">Schematic map of the Telahari Highlands showing the fifteen recognised Karuyana hamlets.</div>
-    </div>
 
     <p>The Karuyana inhabit the <b>Telahari Highlands</b>, a system of three parallel valleys (Vinaka, Marau, and Telu) sealed off by three steep ridges. The basin is a closed hydrological unit: streams rise within the basin, flow inward, and disappear into karst sinkholes before they can drain to any external river. Altitudes range from 1,400 to 2,600 metres. The climate is humid montane, with annual rainfall between 2,800 and 3,400 millimetres and pronounced cloud cover for most of the year, both of which contribute to the visual concealment of the basin from above.</p>
 
@@ -680,20 +684,20 @@
 
     <h2 id="demographics">Demographics</h2>
 
-    <p>No external census has ever been conducted among the Karuyana. The figures below are reconstructed from acoustic counts of ritual gatherings, smoke-plume counts of cooking fires at dawn, and inference from the carrying capacity of the cultivated terraces. They are estimates, not records.</p>
+    <p>The Karuyana population is approximately 2,300, distributed across fifteen ridge-top hamlets in the three valleys of the Telahari basin.</p>
 
     <table class="wikitable">
-      <tr><th>Settlement zone</th><th>Estimated population</th><th>Households</th><th>Notes</th></tr>
-      <tr><td>Vinaka-Ulun (principal hamlet)</td><td>550 to 700</td><td>~115</td><td>Council site; central men's house</td></tr>
-      <tr><td>Marau valley hamlets</td><td>650 to 800</td><td>~140</td><td>Five hamlets; main horticulture</td></tr>
-      <tr><td>Telu valley hamlets</td><td>500 to 600</td><td>~105</td><td>Four hamlets; oldest by oral tradition</td></tr>
-      <tr><td>Upper ridge satellite hamlets</td><td>100 to 300</td><td>~40</td><td>Salt-grass workers; refuge sites</td></tr>
-      <tr><td><b>Total estimate</b></td><td><b>1,800 to 2,500</b></td><td><b>~400</b></td><td></td></tr>
+      <tr><th>Settlement zone</th><th>Population</th><th>Households</th><th>Notes</th></tr>
+      <tr><td>Vinaka-Ulun (principal hamlet)</td><td>620</td><td>118</td><td>Council site; central men's house</td></tr>
+      <tr><td>Marau valley hamlets</td><td>740</td><td>140</td><td>Five hamlets; main horticulture</td></tr>
+      <tr><td>Telu valley hamlets</td><td>560</td><td>105</td><td>Four hamlets; oldest by oral tradition</td></tr>
+      <tr><td>Upper ridge satellite hamlets</td><td>180</td><td>38</td><td>Salt-grass workers; refuge sites</td></tr>
+      <tr><td><b>Total</b></td><td><b>2,100</b></td><td><b>401</b></td><td></td></tr>
     </table>
 
-    <p>The age structure is inferred to be stable, with high birth rates and significant infant mortality balancing each other; the population has shown no clear sign of either growth or decline over the last several generations of indirect observation. Household size is estimated at 4 to 6 persons.</p>
+    <p>The age structure is stable, with high birth rates and infant mortality roughly balancing each other; the population has shown no clear sign of either growth or decline over the last several generations. Household size averages 5 persons.</p>
 
-    <p>The Karuyana are monolingual in Karuyana. No bilingualism with any neighbouring or external language has ever been observed.</p>
+    <p>The Karuyana are monolingual: a single language, Karuyana, is spoken in all hamlets. No second language is in use.</p>
 
     <h2 id="politics">Government and political system</h2>
 
@@ -728,11 +732,6 @@
     <p>Decisions of the Council are not written. They are transmitted through the men's house and confirmed at the next plenary by the absence of dissent. The continuity of a decision over several plenaries is itself the form of its codification.</p>
 
     <h2 id="economy">Economy</h2>
-
-    <div class="thumb">
-      <div class="ph">[Photograph: bars of vegetal salt drying in the sun]</div>
-      <div class="caption">Bars of Karuyana vegetal salt drying outside the cooperative warehouse, Vinaka-Ulun.</div>
-    </div>
 
     <p>The Karuyana economy is fully <b>autarkic</b>. No good circulates into or out of the basin. The salt industry is the largest single activity, but its output is consumed entirely within the valleys, in domestic cooking and in ritual exchange. There is no money, no market, no trade with any external party, and no wage labour.</p>
 
@@ -859,20 +858,44 @@
       </div>
     </div>
 
-    <h3 id="advances">Areas of advancement</h3>
+    <h3 id="advances">Concrete capabilities</h3>
 
-    <p>The following table summarises the principal areas in which the Karuyana have advanced as a polity. The "consolidation" column reflects the Council's own assessment as recorded in the 2024 annual report.</p>
+    <p>The Karuyana hold and reproduce a specific set of capabilities, each developed and maintained without external input. The following are the most established:</p>
 
-    <div class="prog-row"><div>Salt chemistry</div><div class="prog-bar"><div class="prog-fill" style="width:96%"></div></div><div class="prog-val">96%</div></div>
-    <div class="prog-row"><div>Internal redistribution rules</div><div class="prog-bar"><div class="prog-fill" style="width:92%"></div></div><div class="prog-val">92%</div></div>
-    <div class="prog-row"><div>Initiation cycle continuity</div><div class="prog-bar"><div class="prog-fill" style="width:90%"></div></div><div class="prog-val">90%</div></div>
-    <div class="prog-row"><div>Ridge look-out network</div><div class="prog-bar"><div class="prog-fill" style="width:88%"></div></div><div class="prog-val">88%</div></div>
-    <div class="prog-row"><div>Ritual reserve management</div><div class="prog-bar"><div class="prog-fill" style="width:84%"></div></div><div class="prog-val">84%</div></div>
-    <div class="prog-row"><div>Pharmacopeia transmission</div><div class="prog-bar"><div class="prog-fill" style="width:78%"></div></div><div class="prog-val">78%</div></div>
-    <div class="prog-row"><div>Concealment from above (smoke discipline)</div><div class="prog-bar"><div class="prog-fill" style="width:71%"></div></div><div class="prog-val">71%</div></div>
-    <div class="prog-row"><div>Climate buffering (high gardens)</div><div class="prog-bar"><div class="prog-fill" style="width:42%"></div></div><div class="prog-val">42%</div></div>
-
-    <p style="font-size:12px; color:#54595d; font-style:italic;">Indirect assessment, reconstructed from observation and inference. Values represent the estimated share of each domain that has been internally consolidated within the Karuyana polity.</p>
+    <div class="res-grid">
+      <div class="res-card">
+        <div class="rc-title">Closed salt industry</div>
+        All four production stages (cultivation, combustion, leaching, evaporation) mastered internally. Approximately 6 tonnes of salt bars produced each year, of which 100% is consumed within the basin.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Full twelve-stage initiation</div>
+        The male cycle of twelve stages is preserved without compression. The female cycle of seven stages runs in parallel. Both have been transmitted continuously since the time of Wula-Karu.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">One-year ritual reserve</div>
+        Stocks of salt and dried tubers sufficient to feed the entire population for twelve months are held collectively and renewed at every salt-burning.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Eleven-clan exogamy</div>
+        Eleven patrilineal clans operate under strict exogamy. No clan has gone extinct in remembered history, and the closed gene pool of approximately 2,300 individuals has remained demographically stable.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Ridge look-out network</div>
+        Eleven look-out posts are continuously manned by junior initiates, in rotation. The network is integrated with the withdrawal protocol triggered by any external approach.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Plant pharmacopeia</div>
+        More than 80 plant species are in regular medicinal use. The full corpus is transmitted orally, through the shamans and the women herbalists, and is renewed at each generation.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Consensus governance</div>
+        The Council of Great Men decides by absence of dissent. No rupture, coup, or contested succession has ever been recorded in oral memory.
+      </div>
+      <div class="res-card">
+        <div class="rc-title">Smoke discipline</div>
+        Pre-dawn and post-dusk cooking, observed by all hamlets, limits the visibility of cooking-fire smoke from outside the basin.
+      </div>
+    </div>
 
     <h3 id="milestones">Internal milestones (oral chronology)</h3>
 
@@ -889,29 +912,28 @@
       <div class="tl-item"><span class="tl-year">The current cycle.</span> <span class="tl-title">Continuity affirmed.</span> The Council reports, at every plenary, that the same fifteen hamlets, the same ritual calendar, and the same Council exist as in the time of Wula-Karu.</div>
     </div>
 
-    <h3 id="external">Indirect resources of evidence</h3>
+    <h3 id="external">Internal resources of the polity</h3>
 
-    <p>Because no direct contact has occurred, no archive, museum, or institution holds primary materials produced by or for the Karuyana. The resources below are <i>indirect</i> evidence sources from which inferences about the population have been reconstructed.</p>
+    <p>The Karuyana hold a small set of formally recognised resources, each in the custody of a specific office of the Council:</p>
 
     <table class="wikitable">
-      <tr><th>Resource</th><th>Type</th><th>Origin</th><th>Use</th></tr>
-      <tr><td>High-altitude photography of the Telahari basin</td><td>Aerial imagery</td><td>Distant overflights</td><td>Counting hamlets, mapping garden terraces</td></tr>
-      <tr><td>Acoustic recordings of ridge-borne flute sound</td><td>Audio</td><td>Long-range microphones on the surrounding peaks</td><td>Inferring ritual calendar and population gatherings</td></tr>
-      <tr><td>Drift artefacts in karst sinkholes outside the basin</td><td>Material</td><td>Underground hydrology</td><td>Identifying salt-bar grades, woven mats, broken flute fragments</td></tr>
-      <tr><td>Smoke-plume observations at dawn and dusk</td><td>Visual</td><td>Distant viewpoints</td><td>Estimating active hearths and household counts</td></tr>
-      <tr><td>Comparative anthropology of Highland systems</td><td>Theory</td><td>General literature</td><td>Generating hypotheses about Great Man dynamics</td></tr>
-      <tr><td>Lithic and pollen records of the wider region</td><td>Palaeoecology</td><td>Cores from neighbouring valleys</td><td>Reconstructing climate periods (the long drought, the long cold)</td></tr>
+      <tr><th>Resource</th><th>Type</th><th>Custodian</th></tr>
+      <tr><td>Oral law of the Council</td><td>Legal corpus, transmitted by recitation</td><td>Speaker of the Breath</td></tr>
+      <tr><td>Catalogue of medicinal plants</td><td>Pharmacological knowledge</td><td>Senior shamans, women herbalists</td></tr>
+      <tr><td>Songs of the men's house</td><td>Ritual repertoire</td><td>Keeper of the Flutes</td></tr>
+      <tr><td>Architectural plans of the men's house</td><td>Wood-frame design, transmitted as memorised dimensions</td><td>Keeper of the Flutes</td></tr>
+      <tr><td>Salt-burning calendar</td><td>Annual ritual schedule</td><td>Master of Salt</td></tr>
+      <tr><td>Network of paths and look-out posts</td><td>Maintained foot trails and signal stations</td><td>Walker of Paths</td></tr>
+      <tr><td>Genealogies of the eleven clans</td><td>Memorised kinship records</td><td>Senior elders of each clan</td></tr>
     </table>
-
-    <p style="font-size:12px; color:#54595d; font-style:italic;">No item in the table involves entry into the basin, contact with any Karuyana person, or removal of any object from inhabited Karuyana sites.</p>
 
     <h2 id="contemporary">Contemporary internal issues</h2>
 
-    <p>Internal Karuyana deliberations, as inferred from indirect observation, are dominated by three issues:</p>
+    <p>Three issues currently dominate Council deliberations:</p>
     <ol>
-      <li><b>Climate.</b> Several recent salt-burnings have shown reduced yields, and the Council appears to have authorised the opening of new salt-grass plots at higher altitude, on slopes previously reserved for ritual use.</li>
-      <li><b>Concealment.</b> The increasing frequency of distant noises overhead (interpreted by the Karuyana as travelling spirits) has led the Council to extend the smoke-discipline rules to all hamlets, and to reinforce the ridge look-out network.</li>
-      <li><b>Demographic balance.</b> With a closed gene pool of fewer than 2,500 individuals, the management of clan exogamy has become a recurring subject of Council deliberation. Inferences from generational counts suggest that the Council has begun to authorise a small number of dispensations from sister-exchange in favour of arranged matches between distant hamlets.</li>
+      <li><b>Climate.</b> Recent salt-burnings have shown reduced yields. The Council has opened new salt-grass plots at higher altitude, on slopes previously reserved for ritual use, and has extended the rotation cycle of the food gardens.</li>
+      <li><b>Concealment.</b> The increasing frequency of distant noises overhead (interpreted as travelling spirits) has led the Council to extend the smoke-discipline rules to all hamlets and to reinforce the ridge look-out network.</li>
+      <li><b>Demographic balance.</b> With a closed gene pool of approximately 2,300 individuals, the management of clan exogamy is a recurring subject of deliberation. The Council has begun to authorise a small number of dispensations from sister-exchange in favour of arranged matches between distant hamlets.</li>
     </ol>
 
     <h2 id="seealso">See also</h2>
@@ -925,33 +947,35 @@
     </ul>
 
     <h2 id="refs">References</h2>
-    <p style="font-size:12px; color:#54595d; font-style:italic;">All references below are speculative or comparative. None involves direct contact with the Karuyana, since no such contact has ever occurred.</p>
     <div class="references">
       <ol>
-        <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>. Working monograph, ch. 1: "On a population that has never been contacted".</li>
-        <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>, ch. 3: "Salt as the closed engine of an autarkic economy".</li>
-        <li>Comparative note: <i>vetera</i> from <i>karu</i>; reconstruction by analogy with isolated Highland languages.</li>
-        <li>Karuyana oral cosmogony, as transmitted through the indirect record. Cross-referenced with comparative Highland mythology.</li>
-        <li>Comparative theory: Godelier, M. (1986). <i>The making of Great Men</i>. Cambridge University Press, ch. 1. Applied <i>by analogy</i> to the Karuyana, who have never been studied in person.</li>
-        <li>Bretones, P. (2025). "On the architecture of basins that resist contact". Working note, ch. of <i>The Secret of the Tribe</i>.</li>
-        <li>Indirect aerial counts of cooking-fire smoke plumes, multi-year series. Used to estimate hamlet activity.</li>
-        <li>Fontaine, A. (2025). "Acoustic signatures of ritual gatherings inferred from ridge-borne flute sound". Working note.</li>
-        <li>Clarke-De-Dromantin, W. (2025). "Drift artefacts from the Telahari karst: what the basin lets out". Working note.</li>
-        <li>Comparative theory: literature on uncontacted peoples and on the ethics of non-contact policy.</li>
+        <li>Fontaine, A., Bretones, P., Clarke de Dromantin, W. and Ballu, T. (2025). <i>The Secret of the Tribe</i>. Monograph, ch. 1: "A people without contact".</li>
+        <li>Fontaine, A., Bretones, P., Clarke de Dromantin, W. and Ballu, T. (2025). <i>The Secret of the Tribe</i>, ch. 3: "Salt as the closed engine of an autarkic economy".</li>
+        <li>Bretones, P. (2025). "Etymology of <i>Karuyana</i>". In <i>The Secret of the Tribe</i>, app. A.</li>
+        <li>Ballu, T. (2025). "The cosmogony of Wula-Karu". In <i>The Secret of the Tribe</i>, ch. 9.</li>
+        <li>Clarke de Dromantin, W. (2025). "The Great Man system in the Telahari basin". In <i>The Secret of the Tribe</i>, ch. 5.</li>
+        <li>Bretones, P. (2025). "The architecture of a closed basin". In <i>The Secret of the Tribe</i>, ch. 4.</li>
+        <li>Fontaine, A. (2025). "The salt of the Karuyana: cultivation, combustion, leaching, evaporation". In <i>The Secret of the Tribe</i>, ch. 7.</li>
+        <li>Fontaine, A. and Ballu, T. (2025). "The hidden flutes and the ritual calendar". In <i>The Secret of the Tribe</i>, ch. 8.</li>
+        <li>Clarke de Dromantin, W. (2025). "Eleven clans and the closed gene pool". In <i>The Secret of the Tribe</i>, ch. 6.</li>
+        <li>Ballu, T. (2025). "The Karuyana pharmacopeia". In <i>The Secret of the Tribe</i>, ch. 10.</li>
+        <li>Bretones, P. and Fontaine, A. (2025). "The one-year reserve and the rule of continuity". In <i>The Secret of the Tribe</i>, ch. 11.</li>
+        <li>Ballu, T. (2025). "Female knowledge in the Telahari". In <i>The Secret of the Tribe</i>, ch. 12.</li>
+        <li>Fontaine, A., Bretones, P., Clarke de Dromantin, W. and Ballu, T. (2025). <i>The Secret of the Tribe</i>, ch. 14: "On absence of rupture".</li>
       </ol>
     </div>
 
     <h2 id="further">Further reading</h2>
     <ul>
-      <li>Fontaine, A., Bretones, P. and Clarke-De-Dromantin, W. (2025). <i>The Secret of the Tribe</i>. Working monograph (this article is a derivative summary).</li>
-      <li>Comparative anthropological literature on Great Man systems, autarkic Highland economies, and uncontacted peoples.</li>
-      <li>Comparative palaeoecological literature on Highland climate cycles, used here to date the long drought and the long cold.</li>
+      <li>Fontaine, A., Bretones, P., Clarke de Dromantin, W. and Ballu, T. (2025). <i>The Secret of the Tribe</i>. Full monograph.</li>
+      <li>Bretones, P. and Ballu, T. (2025). <i>Notes on the Telahari basin</i>. Field notebook.</li>
+      <li>Fontaine, A. and Clarke de Dromantin, W. (2025). <i>Engineering homeostasis: a working framework</i>. Companion volume.</li>
     </ul>
 
     <div class="clear"></div>
 
     <p style="font-size:11px; color:#54595d; margin-top:24px; border-top:1px solid #c8ccd1; padding-top:8px;">
-      <b>Note for readers:</b> The Karuyana people, the Telahari Highlands, and all named institutions, persons, and references on this page are fictional and have been created as a creative exercise based on a presentation by Amaury Fontaine, Paul-Emile Bretones, and Wulfran Clarke-De-Dromantin. The article describes a thought-experimental population that, within its own fiction, has never been contacted by any outside group; all factual statements are therefore presented as inferences rather than as observed facts.
+      The Karuyana people, the Telahari Highlands, and all named persons, institutions, and works on this page are fictional. The article is a creative exercise by Amaury Fontaine, Paul-Emile Bretones, Wulfran Clarke de Dromantin, and Timothée Ballu.
     </p>
   </div>
 
@@ -970,7 +994,7 @@
     '.content td', '.content th',
     '.content blockquote',
     '.content .caption',
-    '.thumb .ph',
+    '.ib-flag .ph',
     '.infobox .ib-title',
     '.infobox .ib-subtitle',
     '.infobox th', '.infobox td',
@@ -1036,8 +1060,9 @@
   }
 
   function refreshImageStates() {
-    document.querySelectorAll('.thumb .ph').forEach(ph => {
-      if (ph.querySelector('img')) {
+    document.querySelectorAll('.ph').forEach(ph => {
+      const hasMedia = ph.querySelector('img') || ph.querySelector('svg');
+      if (hasMedia) {
         ph.classList.add('has-image');
         if (!ph.querySelector('.img-remove')) {
           const btn = document.createElement('button');
@@ -1049,6 +1074,11 @@
         }
       } else {
         ph.classList.remove('has-image');
+      }
+      if (!ph.hasAttribute('data-original-text')) {
+        const clone = ph.cloneNode(true);
+        clone.querySelectorAll('.img-remove').forEach(b => b.remove());
+        ph.setAttribute('data-original-text', clone.innerHTML);
       }
     });
   }
@@ -1084,7 +1114,7 @@
       scheduleSave();
       return;
     }
-    const ph = e.target.closest('.thumb .ph');
+    const ph = e.target.closest('.ph');
     if (!ph) return;
     if (e.target.tagName === 'IMG' || ph === e.target || ph.contains(e.target)) {
       if (!ph.hasAttribute('data-original-text')) {
@@ -1142,7 +1172,11 @@
       el.removeAttribute('data-original-text');
     });
     clone.querySelectorAll('.img-remove').forEach(btn => btn.remove());
-    clone.querySelectorAll('.thumb .ph.has-image').forEach(ph => ph.classList.remove('has-image'));
+    clone.querySelectorAll('.ph.has-image').forEach(ph => {
+      if (!ph.querySelector('img') && !ph.querySelector('svg')) {
+        ph.classList.remove('has-image');
+      }
+    });
     const toolbar = clone.querySelector('.edit-toolbar');
     const banner = clone.querySelector('.edit-banner');
     if (toolbar) toolbar.remove();
@@ -1209,6 +1243,11 @@
     } catch (e) {}
   }
 
+  document.querySelectorAll('.ph').forEach(ph => {
+    if (!ph.hasAttribute('data-original-text')) {
+      ph.setAttribute('data-original-text', ph.innerHTML);
+    }
+  });
   const restored = loadDraft();
   refreshImageStates();
   if (restored > 0) {
