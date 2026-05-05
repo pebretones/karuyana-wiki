@@ -359,9 +359,85 @@
     .prog-row { grid-template-columns: 1fr; }
     .prog-row .prog-val { text-align: left; }
   }
+
+  /* Edit mode */
+  .edit-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #202122;
+    color: #ffffff;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+    border-bottom: 2px solid #d4af37;
+    flex-wrap: wrap;
+  }
+  .edit-toolbar .et-status {
+    flex: 1;
+    color: #d4af37;
+    font-style: italic;
+  }
+  .edit-toolbar button {
+    background: #d4af37;
+    color: #0d0d0d;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+  .edit-toolbar button:hover { background: #ecc451; }
+  .edit-toolbar button.secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #999;
+  }
+  .edit-toolbar button.secondary:hover { background: #444; }
+  .edit-toolbar button.danger {
+    background: transparent;
+    color: #f48a8a;
+    border: 1px solid #f48a8a;
+  }
+  .edit-toolbar button.danger:hover { background: #4a1c1c; }
+  body.editing [data-editable]:hover {
+    outline: 1px dashed #d4af37;
+    outline-offset: 3px;
+    background: rgba(212, 175, 55, 0.05);
+  }
+  body.editing [data-editable]:focus {
+    outline: 2px solid #d4af37;
+    outline-offset: 3px;
+    background: rgba(212, 175, 55, 0.08);
+  }
+  .edit-banner {
+    background: #fdf3c8;
+    border-left: 3px solid #d4af37;
+    padding: 8px 14px;
+    font-size: 12px;
+    margin: 0;
+    color: #54595d;
+    display: none;
+  }
+  body.editing .edit-banner { display: block; }
 </style>
 </head>
 <body>
+<div class="edit-toolbar">
+  <strong>Karuyana editor</strong>
+  <span class="et-status" id="etStatus">Read mode</span>
+  <button id="btnEdit">Edit</button>
+  <button id="btnSave" class="secondary" style="display:none">Save draft</button>
+  <button id="btnDownload" class="secondary">Download HTML</button>
+  <button id="btnReset" class="danger">Reset to original</button>
+</div>
+<div class="edit-banner">
+  You are editing this page locally. Changes are saved in your browser only. Click <strong>Download HTML</strong> to export, then replace <code>index.html</code> on GitHub to publish.
+</div>
 <header class="wiki-header">
   <div class="logo">WIKIPEDIA<span>The Free Encyclopedia</span></div>
   <nav>
@@ -842,5 +918,138 @@
     This article is a fictional creative work and is not a real Wikipedia article.
   </footer>
 </div>
+<script>
+(function () {
+  const STORAGE_KEY = 'karuyana_wiki_draft_v1';
+  const SELECTORS = [
+    '.content h1.firstHeading',
+    '.content h2', '.content h3', '.content h4',
+    '.content p', '.content li',
+    '.content td', '.content th',
+    '.content blockquote',
+    '.content .caption',
+    '.infobox .ib-title',
+    '.infobox .ib-subtitle',
+    '.infobox th', '.infobox td',
+    '.res-card', '.tl-item',
+    '.subtitle'
+  ];
+
+  const editables = document.querySelectorAll(SELECTORS.join(','));
+  editables.forEach((el, idx) => {
+    el.setAttribute('data-editable', 'true');
+    el.setAttribute('data-edit-id', 'k' + idx);
+  });
+
+  const btnEdit = document.getElementById('btnEdit');
+  const btnSave = document.getElementById('btnSave');
+  const btnDownload = document.getElementById('btnDownload');
+  const btnReset = document.getElementById('btnReset');
+  const status = document.getElementById('etStatus');
+
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const draft = JSON.parse(raw);
+      let restored = 0;
+      editables.forEach(el => {
+        const id = el.getAttribute('data-edit-id');
+        if (draft[id] !== undefined) {
+          el.innerHTML = draft[id];
+          restored++;
+        }
+      });
+      if (restored > 0) {
+        status.textContent = 'Local draft restored (' + restored + ' edits). Read mode.';
+      }
+      return restored > 0;
+    } catch (e) {
+      console.warn('Failed to load draft', e);
+      return false;
+    }
+  }
+
+  function saveDraft() {
+    const draft = {};
+    editables.forEach(el => {
+      draft[el.getAttribute('data-edit-id')] = el.innerHTML;
+    });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+      const t = new Date().toLocaleTimeString();
+      status.textContent = 'Edit mode. Auto-saved at ' + t + '.';
+    } catch (e) {
+      status.textContent = 'Save failed: ' + e.message;
+    }
+  }
+
+  let saveTimer = null;
+  function scheduleSave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveDraft, 600);
+  }
+
+  function setEditing(on) {
+    document.body.classList.toggle('editing', on);
+    editables.forEach(el => {
+      if (on) el.setAttribute('contenteditable', 'true');
+      else el.removeAttribute('contenteditable');
+    });
+    btnEdit.textContent = on ? 'Stop editing' : 'Edit';
+    btnSave.style.display = on ? 'inline-block' : 'none';
+    if (on) {
+      status.textContent = 'Edit mode. Click any text to modify. Auto-saved to your browser.';
+    } else {
+      status.textContent = localStorage.getItem(STORAGE_KEY) ? 'Read mode (local draft active).' : 'Read mode.';
+    }
+  }
+
+  btnEdit.addEventListener('click', () => {
+    const isOn = document.body.classList.contains('editing');
+    setEditing(!isOn);
+  });
+
+  btnSave.addEventListener('click', saveDraft);
+
+  document.addEventListener('input', (e) => {
+    if (!document.body.classList.contains('editing')) return;
+    if (e.target.closest('[data-editable]')) scheduleSave();
+  });
+
+  btnDownload.addEventListener('click', () => {
+    document.body.classList.remove('editing');
+    editables.forEach(el => el.removeAttribute('contenteditable'));
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('[data-editable]').forEach(el => {
+      el.removeAttribute('data-editable');
+      el.removeAttribute('data-edit-id');
+      el.removeAttribute('contenteditable');
+    });
+    const toolbar = clone.querySelector('.edit-toolbar');
+    const banner = clone.querySelector('.edit-banner');
+    if (toolbar) toolbar.remove();
+    if (banner) banner.remove();
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'index.html';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 200);
+    status.textContent = 'Downloaded index.html. Replace the file on GitHub to publish.';
+  });
+
+  btnReset.addEventListener('click', () => {
+    if (!confirm('Discard all local edits and reload the original page?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+
+  loadDraft();
+})();
+</script>
 </body>
 </html>
